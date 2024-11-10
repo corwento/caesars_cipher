@@ -47,8 +47,15 @@ class CaesarsCipher:
 # Получение зашифрованного сообщения от пользователя
 encrypted_message = input("Введите зашифрованное сообщение: ")
 
-# Поиск ключа и расшифровка сообщения
-cipher = CaesarsCipher()
-for key in range(1, cipher.alphabet_len):
-    decrypted_message = cipher.decrypt(encrypted_message, key)
-    print(f"{key}: {decrypted_message}")
+
+# Запись результата в файл
+file_path = input("Введите путь для записи результата: ") + "\\result.txt"
+with open(file_path, 'w') as file:
+    # Поиск ключа и расшифровка сообщения
+    cipher = CaesarsCipher()
+    for key in range(1, cipher.alphabet_len):
+        decrypted_message = cipher.decrypt(encrypted_message, key)
+        file.write(f"Подобранный ключ: {key}. ")
+        file.write(f"Расшифрованное сообщение: {decrypted_message}\n")
+
+print("Результаты записаны в файл.")
